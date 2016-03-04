@@ -18,8 +18,4 @@ use ObjectOrientedBundle\Domain\Exam;
 interface ExamGrader
 {
     public function getGradeForExam(Exam $examToGetGradeFor);
-
-    public function getGradeLetterConversionService();
-
-    public function setGradeLetterConversionService(GradeLetterConversionService $gradeLetterConversionServiceIn);
 }
