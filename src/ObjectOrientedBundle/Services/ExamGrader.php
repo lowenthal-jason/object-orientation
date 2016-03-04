@@ -1,8 +1,13 @@
 <?php
-
+/**
+ * Created by PhpStorm.
+ * User: jlowenthal
+ * Date: 3/4/16
+ * Time: 8:07 AM
+ */
 namespace ObjectOrientedBundle\Services;
-
 use ObjectOrientedBundle\Domain\Exam;
+
 
 /**
  * Created by PhpStorm.
@@ -10,39 +15,11 @@ use ObjectOrientedBundle\Domain\Exam;
  * Date: 3/3/16
  * Time: 2:43 PM
  */
-class ExamGrader
+interface ExamGrader
 {
+    public function getGradeForExam(Exam $examToGetGradeFor);
 
-    /**
-     * @var GradeLetterConversionService
-     */
-    private $gradeLetterConversionService;
+    public function getGradeLetterConversionService();
 
-    public function getGradeForExam(Exam $examToGetGradeFor)
-    {
-        $availablePoints = $examToGetGradeFor->getAvailablePoints();
-        $pointsEarned = $examToGetGradeFor->getPointsEarned();
-        $fractionalPoints = $pointsEarned / $availablePoints;
-
-        $grade = null;
-
-        $grade = $this->getGradeLetterConversionService()->convertDecimalValueToGradeLetter($fractionalPoints);
-
-        return $grade;
-
-    }
-
-    public function getGradeLetterConversionService()
-    {
-        if ($this->gradeLetterConversionService == null) {
-            $this->gradeLetterConversionService = new GradeLetterConversionService();
-        }
-        return $this->gradeLetterConversionService;
-    }
-
-    public function setGradeLetterConversionService($gradeLetterConversionServiceIn)
-    {
-        $this->gradeLetterConversionService = $gradeLetterConversionServiceIn;
-    }
-
+    public function setGradeLetterConversionService(GradeLetterConversionService $gradeLetterConversionServiceIn);
 }
