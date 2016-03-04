@@ -24,13 +24,12 @@ class Exam
      * @param $numberOfQuestionsAnswered
      * @param $grade
      */
-    public function __construct($availablePoints, $pointsEarned, $numberOfQuestions, $numberOfQuestionsAnswered, $grade)
+    public function __construct($availablePoints, $pointsEarned, $numberOfQuestions, $numberOfQuestionsAnswered)
     {
         $this->availablePoints = $availablePoints;
         $this->pointsEarned = $pointsEarned;
         $this->numberOfQuestions = $numberOfQuestions;
         $this->numberOfQuestionsAnswered = $numberOfQuestionsAnswered;
-        $this->grade = $grade;
     }
 
     /**
