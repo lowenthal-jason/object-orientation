@@ -16,8 +16,6 @@ class Exam
 
     private $numberOfQuestionsAnswered;
 
-    private $grade;
-
     /**
      * Exam constructor.
      * @param $availablePoints
@@ -97,21 +95,5 @@ class Exam
     public function setNumberOfQuestionsAnswered($numberOfQuestionsAnswered)
     {
         $this->numberOfQuestionsAnswered = $numberOfQuestionsAnswered;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGrade()
-    {
-        return $this->grade;
-    }
-
-    /**
-     * @param mixed $grade
-     */
-    public function setGrade($grade)
-    {
-        $this->grade = $grade;
     }
 }

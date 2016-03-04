@@ -28,7 +28,6 @@ class ExamGrader
 
         $grade = $this->getGradeLetterConversionService()->convertDecimalValueToGradeLetter($fractionalPoints);
 
-        $examToGetGradeFor->setGrade($grade);
         return $grade;
 
     }
