@@ -1,6 +1,7 @@
 <?php
 
 namespace ObjectOrientedBundle\Services;
+
 use ObjectOrientedBundle\Domain\Exam;
 
 /**
@@ -11,6 +12,12 @@ use ObjectOrientedBundle\Domain\Exam;
  */
 class ExamGrader
 {
+
+    /**
+     * @var GradeLetterConversionService
+     */
+    private $gradeLetterConversionService;
+
     public function getGradeForExam(Exam $examToGetGradeFor)
     {
         $availablePoints = $examToGetGradeFor->getAvailablePoints();
@@ -18,21 +25,25 @@ class ExamGrader
         $fractionalPoints = $pointsEarned / $availablePoints;
 
         $grade = null;
-        if ($fractionalPoints >= .9) {
-            $grade = 'A';
-        } else if ($fractionalPoints >= .8) {
-            $grade = 'B';
-        } else if ($fractionalPoints >= .7) {
-            $grade = 'C';
-        } else if ($fractionalPoints >= .6) {
-            $grade = 'D';
-        } else {
-            $grade = 'F';
-        }
+
+        $grade = $this->getGradeLetterConversionService()->convertDecimalValueToGradeLetter($fractionalPoints);
 
         $examToGetGradeFor->setGrade($grade);
         return $grade;
 
+    }
+
+    public function getGradeLetterConversionService()
+    {
+        if ($this->gradeLetterConversionService == null) {
+            $this->gradeLetterConversionService = new GradeLetterConversionService();
+        }
+        return $this->gradeLetterConversionService;
+    }
+
+    public function setGradeLetterConversionService(GradeLetterConversionService $gradeLetterConversionServiceIn)
+    {
+        $this->gradeLetterConversionService = $gradeLetterConversionServiceIn;
     }
 
 }
