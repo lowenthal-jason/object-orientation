@@ -1,0 +1,8 @@
+object_oriented:
+    resource: "@ObjectOrientedBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
