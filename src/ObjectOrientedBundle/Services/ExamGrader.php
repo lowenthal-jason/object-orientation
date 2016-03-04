@@ -41,7 +41,7 @@ class ExamGrader
         return $this->gradeLetterConversionService;
     }
 
-    public function setGradeLetterConversionService(GradeLetterConversionService $gradeLetterConversionServiceIn)
+    public function setGradeLetterConversionService($gradeLetterConversionServiceIn)
     {
         $this->gradeLetterConversionService = $gradeLetterConversionServiceIn;
     }

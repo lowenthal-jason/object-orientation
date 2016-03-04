@@ -16,7 +16,18 @@ class ExamGraderTest extends \PHPUnit_Framework_TestCase
 
     public function testGetGradeForExam(){
         $this->specify("Testing the method that gets the grade for an exam", function($examToGrade, $expectedOutput){
+            $mockConversionService = $this->getMock('GradeLetterConversionService',['convertDecimalValueToGradeLetter']);
+            $mockConversionService->method('convertDecimalValueToGradeLetter')->willReturnMap([
+                [.9,'A'],
+                [.8,'B'],
+                [.7,'C'],
+                [.6,'D'],
+                [.5,'F'],
+                [.4,'F']
+            ]);
+
             $examGrader = new ExamGrader();
+            $examGrader->setGradeLetterConversionService($mockConversionService);
             $resultingGrade = $examGrader->getGradeForExam($examToGrade);
             verify($resultingGrade)->equals($expectedOutput);
         }, ['examples'=>[
