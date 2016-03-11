@@ -1,4 +1,2 @@
-.checkout
-=========
-
-A Symfony project created on March 3, 2016, 10:32 pm.
+# object-orientation
+Simple repository showing some of the design precepts of object orientation in PHP
